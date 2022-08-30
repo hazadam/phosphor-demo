@@ -1,0 +1,62 @@
+body {
+    background-color: white;
+    font-family: Times New Roman;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #736e6e;
+}
+
+.emphasize-upper {
+    text-transform: uppercase;
+    font-style: italic;
+    color: #0b5ed7;
+}
+.emphasize {
+    font-style: italic;
+    color: #0b5ed7;
+}
+
+.logo {
+    height: 5rem;
+    width: 5rem;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    .section-content {
+        position: absolute;
+        padding: 0 1rem;
+        width: 100%;
+        text-align: center;
+        top: 50%;
+        transform: translateY(-50%);
+        h1 {
+            font-style: italic;
+            font-size: 6rem;
+            margin: 0;
+        }
+        h2 {
+            font-style: italic;
+            font-size: 5rem;
+            margin: 0;
+        }
+        h3 {
+            margin: 0;
+            font-style: italic;
+            font-size: 3rem;
+        }
+        p {
+            margin: 1rem 0;
+            font-style: italic;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.list {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}

@@ -1,0 +1,24 @@
+{% vue Counter %}
+    {% props %}
+        {% set initialCount = 99 %}
+    {% endprops %}
+    <h3>{% mask %}...{% then %}{ count }{% endmask %}</h3>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex w-50 gap-2 justify-content-center">
+            <button class="btn btn-primary" type="button" @click="count--">-</button>
+            <button class="btn btn-primary" type="button" @click="count++">+</button>
+        </div>
+    </div>
+    {% block javascript %}
+        import {ref} from 'vue';
+        import phosphor from '@hazadam/phosphor-js';
+        export default phosphor({
+            name: 'Counter',
+            props: { initialCount: Number },
+            setup: (props) => {
+                const count = ref(props.initialCount || 0);
+                return {count};
+            }
+        });
+    {% endblock %}
+{% endvue %}

@@ -1,0 +1,46 @@
+version: '2.4'
+
+x-services:
+  shared_php_apache: &shared_php_apache
+    image: php:8.1-apache-dev
+    volumes:
+      - ./:/var/www/html/app
+      - ./.dev/docker/config/php_apache/apache/sites-enabled:/etc/apache2/sites-enabled
+      - ./.dev/docker/config/php_apache/apache/envvars:/etc/apache2/envvars
+      - ./.dev/docker/data/php_apache/bash/.bash_history:/home/developer/.bash_history
+      - ./.dev/docker/data/php_apache/bash/.root_bash_history:/root/.bash_history
+      - "${SSH_AUTH_SOCK}:/run/ssh-host.sock"
+    working_dir: /var/www/html/app
+    environment:
+      - 'SSH_AUTH_SOCK=/run/ssh-host.sock'
+    labels:
+      local.symfony.xdebug: 1
+
+services:
+  dist:
+    image: hazadam/phosphor-demo:latest
+    volumes:
+      - ./.dev/docker/config/dist/apache/sites-enabled:/etc/apache2/sites-enabled
+      - ./.dev/docker/config/dist/apache/envvars:/etc/apache2/envvars
+    ports:
+      - '8003:80'
+#
+#  php_apache:
+#    <<: *shared_php_apache
+#    ports:
+#      - '8002:80'
+#
+#  php_phpstorm:
+#    <<: *shared_php_apache
+#    user: developer
+#    ports: []
+#    entrypoint: ["phpstorm_entrypoint.sh"]
+#    command: ["tail", "-f", "/dev/null"]
+#
+#  node:
+#    image: node:lts
+#    volumes:
+#      - './:/var/www/app'
+#    working_dir: /var/www/app
+#    command: ["tail", "-f", "/dev/null"]
+#    user: node

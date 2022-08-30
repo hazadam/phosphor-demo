@@ -1,0 +1,44 @@
+{% vue ToDoList %}
+    {% props %}
+        {% set items = [
+            { id: 1, label: 'Land a job in Carvago' },
+            { id: 2, label: 'Add new features to Phosphor' }
+        ] %}
+    {% endprops %}
+    <ul class="list-group list">
+        <li v-for="item in items" class="list-group-item" key="item.id">
+            <div class="d-flex justify-content-between align-baseline gap-1">
+                <span>{ item.label }</span>
+                <button @click="del(item.id)" class="btn btn-sm btn-danger" type="button">Del</button>
+            </div>
+        </li>
+        <input @keydown.enter="add" v-model="newItem" class="form-control mt-3" placeholder="Add new item and press Enter" type="text">
+    </ul>
+    {% block javascript %}
+        import {ref} from 'vue';
+        import phosphor from '@hazadam/phosphor-js';
+        export default phosphor({
+            name: 'ToDoList',
+            props: { items: Array },
+            setup: (props) => {
+                let id = Math.max(...props.items.map(item => item.id)) || 0;
+                let items = ref(props.items);
+                let newItem = ref(null);
+                return {
+                    items,
+                    newItem,
+                    add: () => {
+                        if (newItem.value) {
+                            id++;
+                            items.value.push({id, label: newItem.value});
+                            newItem.value = '';
+                        }
+                    },
+                    del: (id) => {
+                        items.value = items.value.filter(item => item.id !== id);
+                    }
+                };
+            }
+        });
+    {% endblock %}
+{% endvue %}

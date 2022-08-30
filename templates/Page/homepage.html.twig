@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section>
+        <div class="section-content">
+            <img class="logo" src="{{ asset('build/images/images/chemistry.png') }}" alt="logo">
+            <h1><span class="emphasize-upper">ph</span>os<span class="emphasize-upper">p</span>hor</h1>
+            <h3>Write <span class="emphasize">Vue</span> from the comfort of <span class="emphasize">Twig</span>!</h3>
+            <small>@AdamHazda Check the source <a target="_blank" href="https://github.com/hazadam/phosphor-demo">here</a></small>
+        </div>
+    </section>
+    <section>
+        <div class="section-content">
+            <h3 class="emphasize mb-5">So what's up with all this?</h3>
+            <p>Did you know <span class="emphasize">Vue</span> can <span class="emphasize">compile</span> templates on the <span class="emphasize">fly</span>?</p>
+            <p>You can happily stick with your <span class="emphasize">Server Side Rendered Twig</span> templates.</p>
+            <p>While using the full range of <span class="emphasize">Vues</span> features.</p>
+            <p>Stop creating <span class="emphasize">redundant API endpoints</span>, you already have the data in templates!</p>
+            <p class="emphasize mt-5">See examples below</p>
+        </div>
+    </section>
+    <section>
+        <div class="section-content">
+            <h2 class="emphasize">Counter</h2>
+            {% include 'Component/Counter.html.twig' %}
+            <p>The code's below</p>
+        </div>
+    </section>
+    <section>
+        <pre><code class="language-twig">{{ counter_code() }}</code></pre>
+    </section>
+    <section>
+        <div class="section-content">
+            <h2 class="emphasize">To Do List</h2>
+            {% include 'Component/ToDoList.html.twig' %}
+            <p>The code's below</p>
+        </div>
+    </section>
+    <section>
+        <pre><code class="language-twig">{{ to_do_list_code() }}</code></pre>
+    </section>
+{% endblock %}
