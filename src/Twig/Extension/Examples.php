@@ -42,7 +42,7 @@ CODE;
 {% vue ToDoList %}
     {% props %}
         {% set items = [
-            { id: 1, label: 'Land a job in Carvago' },
+            { id: 1, label: 'Land a great new job' },
             { id: 2, label: 'Add new features to Phosphor' }
         ] %}
     {% endprops %}
